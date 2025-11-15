@@ -1,2 +1,12 @@
 ---
+- name: Update all
+  action: >
+    {{ ansible_pkg_mgr }} name='*' state=present update_cache=yes
+  when: ansible_pkg_mgr is defined
+
+- name: Update All with package
+  ansible.builtin.package:
+    name: '*'
+    state: latest
+  when: ansible_pkg_mgr is not defined
 ...
