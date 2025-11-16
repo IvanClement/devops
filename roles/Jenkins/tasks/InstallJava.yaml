@@ -15,7 +15,7 @@
     owner: root
     group: root
     mode: 0644
-    content; |
+    content: |
       [Adoptium]
       name=Adoptium
       baseurl=https://packages.adoptium.net/artifactory/rpm/${DISTRIBUTION_NAME:-$(. /etc/os-release; echo $ID)}/\$releasever/\$basearch
