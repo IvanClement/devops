@@ -11,7 +11,7 @@
 
 - name: Install adoptium repo
   ansible.builtin.copy:
-    path: /etc/yum.repos.d/adoptium.repo
+    dest: /etc/yum.repos.d/adoptium.repo
     owner: root
     group: root
     mode: 0644
