@@ -1,21 +1,60 @@
 ---
-- name: Install Java with package manager
-  action: >
-    {{ ansible_pkg_mgr }} name='{{ JavaPackages }}' state=present update_cache=yes
-  when: ansible_pkg_mgr is defined
+- name: Check JavaFlavor
+  ansible.builtin.assert:
+    quiet: true
+    fail_msg: JavaFlavor must be either 'OS' or 'Temurin'
+    that:
+      "JavaFlavor == 'OS' or JavaFlavor == 'Temurin'"
 
-- name: Install Java with package module
+- name: Load variables for Java
+  ansible.builtin.include_vars: "Java_{{ JavaFlavor }}.yaml"
+
+- name: Remove some packages
   ansible.builtin.package:
-    name: "{{ JavaPackages }}"
-    state: present
-  when: ansible_pkg_mgr is not defined
+    name: "{{ ToBeRemovedJavaPachages }}"
+    state: absent
+  when:
+    - ToBeRemovedJavaPachages is defined
+    - ToBeRemovedJavaPachages | length > 0
 
-- name: Create profile file for Java
-  ansible.builtin.copy:
-    dest: /etc/profile.d/java.sh
-    owner: root
-    group: root
-    mode: 0644
-    content: |
-      export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which java)))))
-      export PATH=$PATH:$JAVA_HOME/bin
+- name: Install OS repository Java version
+  block:
+  - name: Install Java with package manager
+    action: >
+      {{ ansible_pkg_mgr }} name='{{ JavaPackages }}' state=present update_cache=yes
+    when: ansible_pkg_mgr is defined
+
+  - name: Install Java with package module
+    ansible.builtin.package:
+      name: "{{ JavaPackages }}"
+      state: present
+    when: ansible_pkg_mgr is not defined
+
+  - name: Create profile file for Java
+    ansible.builtin.copy:
+      dest: /etc/profile.d/java.sh
+      owner: root
+      group: root
+      mode: 0644
+      content: |
+        export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which java)))))
+        export PATH=$PATH:$JAVA_HOME/bin
+  when: JavaFlavor == 'OS'
+
+- name: Install Temurin Java Version
+  block:
+  - name: Install adoptium repo
+    ansible.builtin.copy:
+      path: /etc/yum.repos.d/adoptium.repo
+      owner: root
+      group: root
+      mode: 0644
+      content; |
+        [Adoptium]
+        name=Adoptium
+        baseurl=https://packages.adoptium.net/artifactory/rpm/${DISTRIBUTION_NAME:-$(. /etc/os-release; echo $ID)}/\$releasever/\$basearch
+        enabled=1
+        gpgcheck=1
+        gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
+  
+  when: TemurinJava | bool

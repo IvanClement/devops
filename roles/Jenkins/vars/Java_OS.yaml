@@ -1,0 +1,6 @@
+---
+JavaPackages:
+  - "java-{{ JavaVersion }}-openjdk"
+  - "java-{{ JavaVersion }}-openjdk-devel"
+ToBeRemovedJavaPachages: []
+...

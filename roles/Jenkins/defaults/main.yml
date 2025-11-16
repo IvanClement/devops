@@ -3,9 +3,11 @@
 # defaults file for Jenkins
 InstallJava: true
 JavaVersion: 21
-JavaPackages:
-  - "java-{{ JavaVersion }}-openjdk"
-  - "java-{{ JavaVersion }}-openjdk-devel"
+# JavaFlavor
+# Can be
+# Temurin
+# OS
+JavaFlavor: Temurin
 
 UpdateAll: true
 
