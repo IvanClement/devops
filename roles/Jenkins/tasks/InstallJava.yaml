@@ -1,12 +1,7 @@
 ---
 - name: Install Java
   action: >
-    {{ ansible_pkg_mgr }} name='{{ JavaPackage }}' state=present update_cache=yes
-  loop:
-    - "java-{{ JavaVersion }}-openjdk"
-    - "java-{{ JavaVersion }}-openjdk-devel"
-  loop_control:
-    loop_var: JavaPackage
+    {{ ansible_pkg_mgr }} name='{{ JavaPackages }}' state=present update_cache=yes
   when: ansible_pkg_mgr is defined
 
 - name: Install Java with package

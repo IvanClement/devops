@@ -1,0 +1,16 @@
+---
+- name: Install repository on RedHat family
+  block:
+  - name: Install Jenkins repository on RedHat family
+    ansible.builtin.get_url:
+      url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+      dest: /etc/yum.repos.d/jenkins.repo
+      mode: '0644'
+      owner: root
+      group: root
+
+  - name: Import Jenkins repository key
+    ansible.builtin.rpm_key:
+      state: present
+      key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+  when: ansible_pkg_mgr == 'dnf'
