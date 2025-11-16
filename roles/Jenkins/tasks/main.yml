@@ -11,4 +11,6 @@
     - InstallJava | bool
     - JavaVersion is defined
 
+- name: Actually install Jenkins
+  ansible.builtin.include_tasks: InstallJenkins.yaml
 ...

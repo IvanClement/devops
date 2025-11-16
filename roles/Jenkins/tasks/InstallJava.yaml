@@ -9,3 +9,13 @@
     name: "{{ JavaPackages }}"
     state: present
   when: ansible_pkg_mgr is not defined
+
+- name: Create profile file for Java
+  ansible.builtin.copy:
+    dest: /etc/profile.d/java.sh
+    owner: root
+    group: root
+    mode: 0644
+    content: |
+      export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which java)))))
+      export PATH=$PATH:$JAVA_HOME/bin
