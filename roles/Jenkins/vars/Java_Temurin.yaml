@@ -1,7 +1,11 @@
 ---
 JavaPackages:
-  - "temurin-{{ JavaVersion }}-openjdk"
+  - "temurin-{{ JavaVersion }}-jdk"
 ToBeRemovedJavaPachages:
-  - "java-{{ JavaVersion }}-openjdk"
-  - "java-{{ JavaVersion }}-openjdk-devel"
+  - java-11-openjdk
+  - java-11-openjdk-devel
+  - java-17-openjdk
+  - java-17-openjdk-devel
+  - java-21-openjdk
+  - java-21-openjdk-devel
 ...

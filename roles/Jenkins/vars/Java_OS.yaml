@@ -2,5 +2,8 @@
 JavaPackages:
   - "java-{{ JavaVersion }}-openjdk"
   - "java-{{ JavaVersion }}-openjdk-devel"
-ToBeRemovedJavaPachages: []
+ToBeRemovedJavaPachages:
+  - temurin-11-jdk
+  - temurin-17-jdk
+  - temurin-21-jdk
 ...
