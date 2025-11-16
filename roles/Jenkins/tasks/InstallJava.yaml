@@ -18,7 +18,7 @@
     content: |
       [Adoptium]
       name=Adoptium
-      baseurl=https://packages.adoptium.net/artifactory/rpm/{{ansible_distribution | lower }}/$releasever/$basearch
+      baseurl=https://packages.adoptium.net/artifactory/rpm/{{ansible_distribution }}/$releasever/$basearch
       enabled=1
       gpgcheck=1
       gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
