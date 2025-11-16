@@ -1,6 +1,11 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # tasks file for Jenkins
+- name: Install mandatory packages
+  ansible.builtin.package:
+    name: "{{ MandatoryPackages }}"
+    state: present
+
 - name: Call update all task file
   ansible.builtin.include_tasks: UpdateAll.yaml
   when: UpdateAll | bool
