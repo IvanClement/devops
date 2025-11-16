@@ -11,3 +11,4 @@ UpdateAll: true
 
 MandatoryPackages:
   - which
+  - fontconfig

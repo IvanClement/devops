@@ -12,11 +12,10 @@
   - name: Import Jenkins repository key
     ansible.builtin.rpm_key:
       state: present
-      key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+      key: https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
   
   - name: Install Jenkins
     ansible.builtin.dnf:
       name: jenkins
       state: present
-
   when: ansible_pkg_mgr == 'dnf'
