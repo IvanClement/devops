@@ -30,7 +30,7 @@
 
 - name: Loop over subelements of the dictionary
   debug:
-    msg: "Key={{ item.0.key }} value={{ item.1 }}"
+    msg: "Key={{ item.key }} value={{ item.value }}"
   loop: "{{ JavaOptions | dict2items }}"
 
 # - name: Configure Jenkins
