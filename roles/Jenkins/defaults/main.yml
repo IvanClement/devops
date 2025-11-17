@@ -10,10 +10,10 @@ JavaVersion: 21
 JavaFlavor: Temurin
 JavaOptionsCommon: 'JAVA_OPTS=-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true'
 JavaOptions:
-  TimeZone: '-Djava.io.tmpdir=Europe/Paris'
-  TmpDir: '-Dorg.apache.commons.jelly.tags.fmt.timeZone=/var/cache/jenkins/tmp'
+  - '-Djava.io.tmpdir=Europe/Paris'
+  - '-Dorg.apache.commons.jelly.tags.fmt.timeZone=/var/cache/jenkins/tmp'
 
-JenkinsOptions: 'JENKINS_OPTS=--pluginroot=/var/cache/jenkins/plugins'
+JenkinsOptionsCommon: 'JENKINS_OPTS=--pluginroot=/var/cache/jenkins/plugins'
 
 UpdateAll: true
 
