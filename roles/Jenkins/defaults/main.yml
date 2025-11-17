@@ -8,6 +8,15 @@ JavaVersion: 21
 # Temurin
 # OS
 JavaFlavor: Temurin
+JavaOptions:
+  Prefix: 'JAVA_OPTS='
+  Common: -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true
+  TimeZone: 'Europe/Paris'
+  TmpDir: '/var/cache/jenkins/tmp'
+
+JenkinsOptions:
+  Prefix: 'JENKINS_OPTS='
+  PluginsDir: '/var/cache/jenkins/plugins'
 
 UpdateAll: true
 

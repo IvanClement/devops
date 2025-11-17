@@ -19,3 +19,23 @@
       name: jenkins
       state: present
   when: ansible_pkg_mgr == 'dnf'
+
+- name: create Override directory for Jenkins
+  ansible.builtin.file:
+    path: /etc/systemd/system/jenkins.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Loop over subelements of the dictionary
+  debug:
+    msg: "Key={{ item.0.key }} value={{ item.1 }}"
+  loop: "{{ JavaOptions | dict2items | subelements('value') }}"
+
+# - name: Configure Jenkins
+#   ansible.builtin.lineinfile:
+#     path: /etc/systemd/system/jenkins.service.d/override.conf
+#     create: true
+
+#     # insertafter: '### Anything between here and the comment below will become the new contents of the file'
