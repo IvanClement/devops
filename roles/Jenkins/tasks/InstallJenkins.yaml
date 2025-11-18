@@ -28,6 +28,15 @@
     group: root
     mode: 0755
 
+- name: set override
+  ansible.builtin.copy:
+    dest: : /etc/systemd/system/jenkins.service.d/override.conf
+    content: |
+      [Service]
+      {{ JavaOptionsCommon }}{{ JavaOptions | join(' ') | default('') }}
+      {{ JenkinsOptionsCommon }}{{ JenkinsOptions | join(' ') | default('') }}
+
+
 - name: Loop over subelements of the dictionary
   debug:
     msg: "Key={{ item.key }} value={{ item.value }}"
