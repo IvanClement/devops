@@ -30,7 +30,7 @@
 
 - name: set override
   ansible.builtin.copy:
-    dest: : /etc/systemd/system/jenkins.service.d/override.conf
+    dest: '/etc/systemd/system/jenkins.service.d/override.conf'
     content: |
       [Service]
       {{ JavaOptionsCommon }}{{ JavaOptions | join(' ') | default('') }}
