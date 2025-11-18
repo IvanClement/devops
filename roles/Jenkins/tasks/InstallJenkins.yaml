@@ -36,12 +36,6 @@
       {{ JavaOptionsCommon }}{{ JavaOptions | join(' ') | default('') }}
       {{ JenkinsOptionsCommon }}{{ JenkinsOptions | join(' ') | default('') }}
 
-
-- name: Loop over subelements of the dictionary
-  debug:
-    msg: "Key={{ item.key }} value={{ item.value }}"
-  loop: "{{ JavaOptions | dict2items }}"
-
 # - name: Configure Jenkins
 #   ansible.builtin.lineinfile:
 #     path: /etc/systemd/system/jenkins.service.d/override.conf
