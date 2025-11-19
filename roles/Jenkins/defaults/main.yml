@@ -7,12 +7,15 @@ JavaVersion: 21
 # Can be
 # Temurin
 # OS
+JavaTZ: 'Europe/Paris'
+Java_TmpDir: '/var/cache/jenkins/tmp'
 JavaFlavor: Temurin
 JavaOptionsCommon: 'JAVA_OPTS=-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true'
 JavaOptions:
   - '-Djava.io.tmpdir=/var/cache/jenkins/tmp'
   - '-Dorg.apache.commons.jelly.tags.fmt.timeZone=Europe/Paris'
 
+Jenkins_PluginDir: '/var/cache/jenkins/plugins'
 JenkinsOptionsCommon: 'JENKINS_OPTS=--pluginroot=/var/cache/jenkins/plugins'
 
 UpdateAll: true
@@ -21,3 +24,4 @@ MandatoryPackages:
   - which
   - fontconfig
   - gpg
+  - less
