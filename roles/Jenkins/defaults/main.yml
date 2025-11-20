@@ -29,3 +29,4 @@ MandatoryPackages:
   - fontconfig
   - gpg
   - less
+  - git
