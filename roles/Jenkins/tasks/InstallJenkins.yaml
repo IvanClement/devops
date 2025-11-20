@@ -50,6 +50,9 @@
 - name: Just force systemd to reread configs
   ansible.builtin.systemd:
     daemon_reload: true
+    name: jenkins
+    state: started
+    enabled: true
 
 # - name: Configure Jenkins
 #   ansible.builtin.lineinfile:
