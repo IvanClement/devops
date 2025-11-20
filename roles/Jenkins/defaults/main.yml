@@ -10,6 +10,7 @@ JavaVersion: 21
 JavaTZ: 'Europe/Paris'
 Java_TmpDir: '/var/cache/jenkins/tmp'
 JavaFlavor: Temurin
+JenkinsUser: 'jenkins'
 JavaOptionsCommon: 'JAVA_OPTS=-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true'
 JavaOptions:
   - '-Djava.io.tmpdir=/var/cache/jenkins/tmp'
@@ -17,6 +18,9 @@ JavaOptions:
 
 Jenkins_PluginDir: '/var/cache/jenkins/plugins'
 JenkinsOptionsCommon: 'JENKINS_OPTS=--pluginroot=/var/cache/jenkins/plugins'
+JenkinsDirectories:
+  - '/var/cache/jenkins/plugins'
+  - '/var/cache/jenkins/tmp'
 
 UpdateAll: true
 

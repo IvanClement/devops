@@ -28,6 +28,17 @@
     group: root
     mode: 0755
 
+- name: Create Jenkins directories
+  ansible.builtin.file:
+    path: "{{ TheDir }}"
+    state: directory
+    owner: '{{ JenkinsUser }}'
+    group: '{{ JenkinsUser }}'
+    mode: 0755
+  loop: "{{ JenkinsDirectories }}"
+  loop_control:
+    loop_var: TheDir
+
 - name: set override
   ansible.builtin.copy:
     dest: '/etc/systemd/system/jenkins.service.d/override.conf'
@@ -35,6 +46,10 @@
       [Service]
       Environment="{{ JavaOptionsCommon }} {{ JavaOptions | join(' ') | default('') }}"
       Environment="{{ JenkinsOptionsCommon }} {{ JenkinsOptions | join(' ') | default('') }}"
+
+- name: Just force systemd to reread configs
+  ansible.builtin.systemd:
+    daemon_reload: true
 
 # - name: Configure Jenkins
 #   ansible.builtin.lineinfile:
